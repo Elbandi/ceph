@@ -69,7 +69,7 @@ LIBOS_LDA += -lleveldb -lsnappy
 LEVELDB_INCLUDE =
 else
 LIBOS_LDA += leveldb/libleveldb.a
-SUBDIRS += leveldb
+#SUBDIRS += leveldb
 LEVELDB_INCLUDE = -I$(top_srcdir)/src/leveldb/include
 endif
 
