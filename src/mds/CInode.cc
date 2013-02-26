@@ -1119,6 +1119,16 @@ void CInode::queue_backtrace(LogSegment *ls, int64_t location, int64_t pool) {
     new cinode_backtrace_info_t(location, this, ls, pool);
 }
 
+void CInode::remove_all_queued_backtraces() {
+  elist<cinode_backtrace_info_t*>::iterator i = backtraces.begin();
+  while(!i.end()) {
+    cinode_backtrace_info_t *info = *i;
+    ++i;
+    delete info;
+  }
+  backtraces.clear();
+}
+
 // ------------------
 // locking
 

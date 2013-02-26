@@ -569,6 +569,8 @@ private:
 
   void queue_backtrace(LogSegment *ls, int64_t location, int64_t pool = -1);
 
+  void remove_all_queued_backtraces();
+
   void encode_store(bufferlist& bl);
   void decode_store(bufferlist::iterator& bl);
 
