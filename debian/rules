@@ -22,6 +22,7 @@ export DEB_HOST_ARCH      ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 
 extraopts += --with-ocf --with-rest-bench --with-nss
 extraopts += --with-debug
+extraopts += --with-system-leveldb
 extraopts += --enable-cephfs-java
 
 ifeq ($(DEB_HOST_ARCH), armel)
