@@ -58,6 +58,12 @@ void MetaRequest::dump(Formatter *f) const
 
 MetaRequest::~MetaRequest()
 {
+  if (inode)
+    inode->put();
+  if (old_inode)
+    old_inode->put();
+  if (other_inode)
+    other_inode->put();
   if (dentry)
     dentry->put();
   if (old_dentry)
@@ -66,3 +72,47 @@ MetaRequest::~MetaRequest()
     reply->put();
 }
 
+void MetaRequest::set_inode(Inode *in) {
+  assert(inode == NULL);
+  inode = in;
+  inode->get();
+}
+Inode *MetaRequest::get_inode() {
+  return inode;
+}
+
+void MetaRequest::set_old_inode(Inode *in) {
+  assert(old_inode == NULL);
+  old_inode = in;
+  old_inode->get();
+}
+Inode *MetaRequest::get_old_inode() {
+  return old_inode;
+}
+
+void MetaRequest::set_other_inode(Inode *in) {
+  assert(other_inode == NULL);
+  other_inode = in;
+  other_inode->get();
+}
+Inode *MetaRequest::get_other_inode() {
+  return other_inode;
+}
+
+void MetaRequest::set_dentry(Dentry *d) {
+  assert(dentry == NULL);
+  dentry = d;
+  dentry->get();
+}
+Dentry *MetaRequest::get_dentry() {
+  return dentry;
+}
+
+void MetaRequest::set_old_dentry(Dentry *d) {
+  assert(old_dentry == NULL);
+  old_dentry = d;
+  dentry->get();
+}
+Dentry *MetaRequest::get_old_dentry() {
+  return old_dentry;
+}
